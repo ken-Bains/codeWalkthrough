@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+        href="https://cdn.rawgit.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2/raw/36c2eb3e0c44133880485a143717bda9d180f2c1/GistDarkCode.css"
+        rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <div id="sidbar">
+        <nav>Code Walkthrough</nav>
+
+        <ul id="slide-out" class="sidenav sidenav-fixed section table-of-contents">
+            <li class="folderName">
+                <a>&#8627; Config</a>
+                <a class="subClass" href="#config-json">config.json</a>
+            </li>
+            <li class="folderName">
+                <a>&#8627; Models</a>
+                <a class="subClass" href="#example-js">example.js</a>
+                <a class="subClass" href="#index-js">index.js</a>
+                <a class="subClass" href="#schema-sql">schema.sql</a>
+            </li>
+            <li class="folderName">
+                <a>&#8627; Public</a>
+                <a class="subClass">&#8627; Js</a>
+                <a class="subClass2" href="#index2-js">index.js</a>
+                <a class="subClass">&#8627; Routes</a>
+                <a class="subClass2" href="#apiRoutes-js">api-routes.js</a>
+                <a class="subClass2" href="#htmlRoutes-js">html-routes.js</a>
+            </li>
+            <li class="folderName">
+                <a>&#8627; Test</a>
+                <a class="subClass" href="#canary-js">canary.test.js</a>
+            </li>
+            <li class="folderName">
+                <a>&#8627; Views</a>
+                <a class="subClass">&#8627; Layouts</a>
+                <a class="subClass2" href="#handlebars">main.handlebars</a>
+                <a class="subClass" href="#handlebars">404.handlebars</a>
+                <a class="subClass" href="#handlebars">example.handlebars</a>
+                <a class="subClass" href="#handlebars">index.handlebars</a>
+            </li>
+            <li class="folderName">
+                <a href="#server-js">server.js</a>
+            </li>
+        </ul>
+    </div>
+
+    <div id="mainWrapper">
+        <div class="row">
+            <div class="col offset-l2 l6">
+                <div class="card" id="intro">
+                    <div class="card-content">
+                        <h4>Introduction</h4>
+                        <hr>
+                        This is an exercise of a code walkthough of a full stack application. 
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col m3 l4">
+                <div class="card arrow hoverable" style="margin-top: 160px">
+                    <div class="card-content">
+                        <p>
+                            Development and test environments are used locallaly on your machine and require your
+                            password and your local environments settings.
+                        </p>
+                        <br>
+                    </div>
+                </div>
+                <div class="card arrow hoverable" style="margin-top: 200px">
+                    <div class="card-content">
+                        <p>
+                            The production environment is pointing to to a Jaws SQL database that is used to point to
+                            heroku's live deployed database.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m9 l5">
+                <div id="config-json" class="section scrollspy">
+                    <h5><u>Config > config.json</u></h5>
+                    <p> The config.json is used by Sequelize JS to establish diffent SQL databases for differnt
+                        environments. </p>
+                    <script src="https://gist.github.com/ken-Bains/5984a67cacd5db408e28dd76656aba33.js"></script>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <!-- --------------------------------------models/example.js -->
+
+        <div class="row">
+            <div class="col m3 l4">
+                <div class="card arrow hoverable" style="margin-top: 130px">
+                    <div class="card-content">
+                        <p>
+                            Line 2 "sequalze.define" is the sytax sequalze uses to create the table.
+                        </p>
+                        <br>
+                        <p>
+                            Lines 3 & 4: Creating columns for the model and defining those models as "string" and
+                            "text".
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m9 l5">
+                <div id="example-js" class="section scrollspy">
+                    <h5><u>Models > example.js</u></h5>
+                    <p>Example.js is creating a SQL models table named "Example". </p>
+                    <script src="https://gist.github.com/ken-Bains/b38c256d067829b20eedb8d6165a9341.js"></script>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <!-- --------------------------------------models/index.js -->
+
+        <div class="row">
+            <div class="col m3 l4">
+                <div class="card arrow hoverable" style="margin-top: 330px">
+                    <div class="card-content">
+                        <p>
+                            Line 11: Checking to see if an environment variable was set and then creating a new sequalze
+                            instance to that environment.
+                        </p>
+                    </div>
+                </div>
+                <div class="card arrow hoverable" style="margin-top: 180px">
+                    <div class="card-content">
+                        <p>
+                            Line 22: Creating a array by grabbing all the files ending in ".js" within this directory.
+                            It then loops through that new array and creats a db object key with the value that points
+                            to the model iteself.
+                        </p>
+                    </div>
+                </div>
+                <div class="card arrow hoverable" style="margin-top: 110px">
+                    <div class="card-content">
+                        <p>
+                            Line 33: Is looping through the db keys that were prevously created in line 22 and creating
+                            assoication to the other models in the directory. This is used to create foreign keys within
+                            the models.
+                        </p>
+                        <br>
+                        <p>
+                            Line 39: Creats sequelized instances of db object and then exports it.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m9 l5">
+                <div id="index-js" class="section scrollspy">
+                    <h5><u>Models > index.js</u></h5>
+                    <p>Index.js is a dynamically created index file from Sequelize. Its used to dynamically create
+                        database models.</p>
+                    <script src="https://gist.github.com/ken-Bains/c4ef10a8c466b544ae40286c15a682a8.js"></script>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <!-- --------------------------------------models/schema.sql -->
+
+        <div class="row">
+            <div class="col m3 l4">
+                <div class="card arrow hoverable" style="margin-top: 80px">
+                    <div class="card-content">
+                        <p>
+                            SQL file to create 2 databases. One for the chai unit test and one for project iteself.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m9 l5">
+                <div id="schema-sql" class="section scrollspy">
+                    <h5><u>Models > schema.sql</u></h5>
+                    <script src="https://gist.github.com/ken-Bains/72a4e13f9f78a22c96cd45c5570f51ae.js"></script>
+                </div>
+            </div>
+        </div>
+<hr>
+        <!-- --------------------------------------public/js/index.js -->
+
+        <div class="row">
+            <div class="col m3 l4">
+                <div class="card arrow hoverable" style="margin-top: 150px">
+                    <div class="card-content">
+                        <p>
+                            Variables that point to DOM elments.
+                        </p>
+                    </div>
+                </div>
+                <div class="card arrow hoverable" style="margin-top: 150px">
+                    <div class="card-content">
+                        <p>
+                            Line 8: Creates a object called "API" with several methods.
+                        </p>
+                        <br>
+                        <p>
+                            SaveExample method takes in a param, stringifies it and then sends a ajax POST to the
+                            "api/examples" route.
+                        </p>
+                        <br>
+                        <p>
+                            GetExamples method is a ajax GET that utilizes the same "api/examples" route but retrieves
+                            data rather than sending it.
+                        </p>
+                        <br>
+                        <p>
+                            DeleteExmaple method takes in a "id" param and sends a DELETE ajax call to route
+                            "apli/examples/id". This "id" in the route being the route param that was passed into the
+                            function.
+                        </p>
+                    </div>
+                </div>
+                <div class="card arrow hoverable" style="margin-top: 150px">
+                    <div class="card-content">
+                        <p>
+                            Line 34: A function that calls the API.getExamples method that retrives data from a ajax
+                            call and then handles the response. It dynamically creates DOM elements with buttons and
+                            data attributes and then appends them to the page.
+                        </p>
+
+                    </div>
+                </div>
+                <div class="card arrow hoverable" style="margin-top: 540px">
+                    <div class="card-content">
+                        <p>
+                            Line 64: Handles the form submit. It creates and object from the form elements, validates
+                            them, and then calls the API.saveExample method.
+                        </p>
+
+                    </div>
+                </div>
+                <div class="card arrow hoverable" style="margin-top: 440px">
+                    <div class="card-content">
+                        <p>
+                            Line 87: Delete function that grabs the "data-id" attribute and then calls the
+                            API.deleteExample method passing the data attribute.
+                        </p>
+
+                    </div>
+                </div>
+                <div class="card arrow hoverable" style="margin-top: 100px">
+                    <div class="card-content">
+                        <p>
+                            Line 98: Event listeners attatched form submit and delete buttons.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m9 l5">
+                <div id="index2-js" class="section scrollspy">
+                    <h5><u>Public > index.js</u></h5>
+                    <p>The public folder is where all the client side logic is held. The index here is all the client
+                        side logic that is in the index html file. </p>
+                    <script src="https://gist.github.com/ken-Bains/8aa05950c8673a2b4dbcd5cf6a00a00a.js"></script>
+                </div>
+            </div>
+            </div>
+
+            <hr>
+
+            <!-- --------------------------------------routes/api-routes.js -->
+
+            <div class="row">
+                <div class="col m3 l4">
+                    <div class="card arrow hoverable" style="margin-top: 180px">
+                        <div class="card-content">
+                            <p>
+                                These particular methods handle the GET, POST, and DELETE routes.
+                                The "db.Example" methods is imported from the models folder. It calls the database model
+                                named "Example" and then does a SQL query.
+                            </p>
+                            <br>
+                            <p>
+                                The ".findAll" gets all the data from the "Examples" table and returns it.
+                            </p>
+                            <br>
+                            <p>
+                                The ".create" method adds data to the "Examples" table and returns it.
+                            </p>
+                            <br>
+                            <p>
+                                The ".delete" method deletes data to the "Examples" table where the primary key equals
+                                the "id" paramater passed in the route.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m9 l5">
+                    <div id="apiRoutes-js" class="section scrollspy">
+                        <h5><u>Routes > apiRoutes.js</u></h5>
+                        <p>The Routes folder holds all the javascript files that handle database quieres and ajax calls.
+                        </p>
+                        <script src="https://gist.github.com/ken-Bains/7accac82a1ae4b819ab8ec075039aff2.js"></script>
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+            <!-- --------------------------------------routes/html-routes.js -->
+
+            <div class="row">
+                <div class="col m3 l4">
+                    <div class="card arrow hoverable" style="margin-top: 180px">
+                        <div class="card-content">
+                            <p>
+                                These particular methods handle all the page load routes. 
+                                The "db.Example" methods is imported from the models folder. It calls the database model
+                                named "Example" and then does a SQL query. The querys data along with the html files being loaded are sent to the page. 
+                            </p>
+                            <br>
+                            <p>
+                                Line 6: Similar to the apiRoutes.js file the "findAll" method get all the data from the "Example" table in the database and returns the data to the page with "index" html file. 
+                            </p>
+                            <br>
+                            <p>
+                                Line 17: The "findOne" method query the database and returns one row of data that has a primary key that equals the "id" paramater of route. Meaning the id that we are looking for was passed into the routes url. 
+                            </p>
+                            <br>
+                            <p>
+                                Line 25: The "*" in route path is a catch all route that catches all other urls and return a 404 html page. 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m9 l5">
+                    <div id="htmlRoutes-js" class="section scrollspy">
+                        <h5><u>Routes > htmlRoutes.js</u></h5>
+                        <script src="https://gist.github.com/ken-Bains/f2439edd86976cd2adec6a46321447ff.js"></script>                    </div>
+                </div>
+            </div>
+            <hr>
+
+            <!-- --------------------------------------test/canary-test.js -->
+
+            <div class="row">
+                <div class="col m3 l4">
+                    <div class="card arrow hoverable" style="margin-top: 120px">
+                        <div class="card-content">
+                            <p>
+                                This particular test is not checking anything. The syntax is how chai set up their test. You describe the test you want to execute. Check for any particular action or event then set up the expection of the response you are expected to receive. 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m9 l5">
+                    <div id="canary-js" class="section scrollspy">
+                        <h5><u>Test > canary.test.js</u></h5>
+                        <p>The Test folder holds all the chai unit test.</p>
+                        <script src="https://gist.github.com/ken-Bains/d12176ec0aa5fca3ef96e5506820bd9f.js"></script>
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+    <!-- --------------------------------------views/index.handlebars -->
+
+            <div class="row">
+                <div class="col m3 l4">
+                    <div class="card arrow hoverable" style="margin-top: 320px">
+                        <div class="card-content">
+                            <p>
+                                Most of the page is regular html. The intersting aspect of this page is the templating. The double brackets "{{}}" are in indication of handlebars templating. When the page is loaded, handlebars renders the page along with a data object. The object keys match the strings inside the brakets and the object values are then rendered to the page.
+                            </p>
+                            <br>
+                            <p>"{{#each examples}}" loops the the data objects array much like a for loop and renders each index's informaton to the page indicated by "{{this.???}}"</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m9 l5">
+                    <div id="handlebars" class="section scrollspy">
+                        <h5><u>Views > index.handlebars</u></h5>
+                        <p>The Views folder holds all the html templates that are  rendered to the page. The folder structure and file nomeclature are determined by the handlebar requirements.</p>
+                        <script src="https://gist.github.com/ken-Bains/fd556adeb41e2eff4bc44e9b6115c89d.js"></script>
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+    <!-- --------------------------------------server.js -->
+
+            <div class="row">
+                <div class="col m3 l4">
+                    <div class="card arrow hoverable" style="margin-top: 100px">
+                        <div class="card-content">
+                            <p>
+                                The file starts by declaring all its dependencies. "Express" for the routing, "Express-Handlebars" for the html templating, and "db" which are all the models and databases. "require("dotenv").config()" is a package that allows you to hide your password private when deploying. 
+                            </p>
+                            <br>
+                            <p>
+                                line 7: is creating a express instance and naming it "app". A port variable is established which allows you to determine whatever is in the environment variable PORT, or 3000 if there's nothing there. This is applicable for deployed websites like Heroku.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card arrow hoverable" style="margin-top: 40px">
+                        <div class="card-content">
+                            <p>
+                                Line 11: "express. urlencoded()"" is a method inbuilt in express to recognize the incoming Request Object as strings or arrays <br>
+                                Line 12: "express. json()"" is a method inbuilt in express to recognize the incoming Request Object as a JSON Object.<br>
+                                Line 13: "app.use(express.static("public"))" is requiring all the files and folders to render the application html. <br>
+                                Lines 16-22: Is attaching the express instance to use handlebars. This is the syntax requirements from express. <br>
+                                Lines 25-26: The routes folders exports a function which takes in your express app instance. It's calling that function immediately and passing in app.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card arrow hoverable" style="margin-top: 40px">
+                        <div class="card-content">
+                            <p>
+                                Lines 28-34: Is creating a object "force: false". It checks if we are in the test environment and changes the value of "force" and setting it to true. 
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card arrow hoverable" style="margin-top: 40px">
+                        <div class="card-content">
+                            <p>
+                                Lines 37-45: Are calling on the db models and sync method which takes in the variable from line 28. If the value equals true then it drops the table if it already exist and overwrites and existing data. It then sets the app instance to listen to the PORT variable that was created earlier. <br>
+                                Line 47: Exports the app instance. 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m9 l5">
+                    <div id="server-js" class="section scrollspy">
+                        <h5><u>Server.js</u></h5>
+                        <p>The server.js file is probably the most important file in the project. It brings all the other files together and allows them to run. </p>
+                        <script src="https://gist.github.com/ken-Bains/9d5d1d7ca14d9cc72c121c4b9d1e3e72.js"></script>
+                    </div>
+                </div>
+            </div>
+
+        </div><!--end of body wrapper-->
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="index.js"></script>
+</body>
+
+</html>
